@@ -16,8 +16,11 @@ import javax.swing.JOptionPane;
 public class Main {
 public static double wind=0;
     public static Tank[] tanks;
+    //height map created using midpoint displacement represents the heights
+    //at any given x value
     public static int[] heights = new int[MyPanel.xSize];
-   public static AtomicBoolean round=new AtomicBoolean(true);
+   //this automic boolean indicates whether a round is currently active
+    public static AtomicBoolean round=new AtomicBoolean(true);
     /**
      * @param args the command line arguments
      * @throws java.lang.InterruptedException
@@ -51,12 +54,11 @@ public static double wind=0;
             gui.f.repaint();
         }
     }
-
+//simple helper method
     public static Tank[] makeTanks(Tank... t) {
         return t;
     }
-   
-
+   //loads in anew map
     public synchronized static void loadMap(){
         Generator.genMap();
         heights = Generator.heights.clone();
@@ -64,7 +66,9 @@ public static double wind=0;
     }
 
    
-
+/**
+ * Provides the user with the ability to purchase upgrades
+ */
     private synchronized static void doEndOfRoundShop() {
 wind=(int) ((Math.random()*9)-4);
         for (int i = 0; i < tanks.length; i++) {
@@ -104,7 +108,11 @@ wind=(int) ((Math.random()*9)-4);
         }
     }
     
-
+/**
+ * gets a string array from a vargs of strings
+ * @param array
+ * @return 
+ */
     public static String[] getStringArray(String... array) {
         return array;
     }
